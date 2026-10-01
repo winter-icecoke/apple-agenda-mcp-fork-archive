@@ -1,8 +1,17 @@
 # Apple Agenda MCP · 当前证据
 
-更新：2026-10-01。当前轮范围：Wayfinder Work through 的研究核对、首个 HITL 对谈与地图同步；不涉及产品实现、签名发布或现用 MCP 切换。下方 Chart / Day 1 保留各轮历史边界，实时票状态以 Linear 为准。
+更新：2026-10-01。当前轮范围：Wayfinder Work through 的时间/重复业务场景对谈与地图同步；不涉及产品实现、签名发布或现用 MCP 切换。下方 Chart / Day 1 保留各轮历史边界，实时票状态以 Linear 为准。
 
-## Work through · 2026-10-01
+## 时间与重复 · Round 1 · 2026-10-01
+
+- Leo 明确要求继续，并指出逐个提问过碎。本轮按 grilling 的 round 方式，将同一主题内已能一起判断的问题集中提出，先解释业务影响，允许全部采用或按编号调整；地图 Notes 已保存此沟通偏好。
+- 复读当前 map/children、票面/comments/原生关系，三项研究前置均 Done；主控先领取 [决定全天、时区与重复系列的时间和修改范围合同](https://linear.app/icecoke/issue/SPE-970)，Leo Liu / In Progress / Human Input，才推进。
+- 五组候选场景为重复修改范围、跨地区时间、日期及无日期、月底与31号、缺时长/歧义钟点。问题详情及研究输入在票内 round 1；尚无实际回答，不 resolution、不开 ADR，不把候选词义写入 CONTEXT。
+- Calendar 与 Reminders 原生修改范围不同；明确时区与 floating、保存结果与实际通知分层，来源/系统与运行未知保留待验证。高风险正式合同/不变式在实际回答后形成并独立复核；当前不产品开发、不真实对象。
+- HTML v6 同步领取与待答场景；规划已关闭仍为 4/14（3 研究 + 1 决策），22 条原生依赖未变。已定口径及其 Git 证据见下方收口快照；本轮不领取其他 HITL。
+- Research 角色只读复核三报告，保留原生范围、floating/地区时间、日期形态、月底及身份变化的条件；独立 `gpt-6.1-sol / xhigh` docs review 无阻塞。四块/14行、标题嵌套、26本地链接、敏感模式与 whitespace 通过；CSS 未变，未做产品或实际通知验证。
+
+## 覆盖口径 · Work through · 2026-10-01（收口快照）
 
 - 三份研究经主控与独立 `gpt-6.1-sol / xhigh` reviewer 核对，票内 resolution 后 Done：[Calendar 公开边界](https://linear.app/icecoke/issue/SPE-966)、[Reminders 原生结构与地点边界](https://linear.app/icecoke/issue/SPE-967)、[MCP 合同与运行发布基线](https://linear.app/icecoke/issue/SPE-968)。报告分别为 [Calendar](../research/spe-966-calendar-eventkit.md)、[Reminders](../research/spe-967-reminders-location-eventkit.md)、[MCP/运行](../research/spe-968-mcp-runtime-baseline.md)；每项保留 API / 源码 / MCP / 验证 / 未知分层。
 - 报告集成并 push：`97770a1`、`441e081`、`b67f0d0`；[Draft PR](https://github.com/winter-icecoke/apple-agenda-mcp/pull/2) 保持开放，未 merge。独立 review 两处 Calendar 与一处重复实例限定建议已修正；不把研究完成写作产品验收。
