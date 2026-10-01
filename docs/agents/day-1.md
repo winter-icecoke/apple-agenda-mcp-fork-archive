@@ -14,10 +14,10 @@
 ## 开工顺序
 
 1. 核实机器、`git status`、branch / HEAD / remotes 和其他 session 占用。读取根 `AGENTS.md`、[PROJECT_BRIEF](../PROJECT_BRIEF.md)、[agent-execution](agent-execution.md)、[issue-tracker](issue-tracker.md)、[linear-github](linear-github.md)、[validation](validation.md)、[CONTEXT](../../CONTEXT.md) 与当前 PROGRESS。
-2. 使用 `$wayfinder`，读取当前 skill 原文及其 `grilling`、`domain-modeling` 引用。读取 Linear map、comment 和本项目未终态子票；领取一个可推进的非研究票前核对原生依赖。没有子票时先 chart frontier，不把本文件的调查范围直接写成已决功能承诺。
+2. 使用 `$wayfinder`，读取当前 skill 原文及其 `grilling`、`domain-modeling` 引用。读取 Linear map、comment 和本项目未终态子票。只有骨架、没有子票时进入 Chart 模式：建 frontier、连依赖、启动研究后结束本 session，不手动解决非研究票。已有 frontier 时，另一个 Work through session 才领取一张可推进的票；领取前核对原生依赖。
 3. 把需求拆成具体的决策问题，识别 HITL / AFK、研究前置与原生 `blockedBy` / `blocks`。研究按 skill 委派；主控沿用 Leo 选择的模型，角色与模型映射按 agent-execution。
 4. 用能力矩阵区分公开 API 支持、当前实现、MCP 合同与验证证据。用真实结论更新 map 索引、CONTEXT 术语和需要的 ADR；未知保留未知。
-5. 按 [推进地图规则](progress-map.md) 更新 [HTML 地图](../progress/spe-961-agenda-coverage.html)。每个实现/验证批次必须有完成标准、执行者、review 与结果回读。按 Wayfinder 每 session 一个非研究决策，不一次固定启动全队。
+5. 按 [推进地图规则](progress-map.md) 更新 [HTML 地图](../progress/spe-961-agenda-coverage.html)。本 map 默认只做规划，路线清楚后交接实施计划。后续经明确指令进入实现/验证批次时，要有完成标准、执行者、review 与结果回读。Work through 每 session 最多一个非研究决策，不一次固定启动全队。
 
 ## 可直接复制给新 session 的 prompt
 
@@ -26,7 +26,7 @@
 
 先读取 AGENTS.md、docs/agents/day-1.md、docs/PROJECT_BRIEF.md、docs/_meta/PROGRESS.md，以及 day-1 指向的 agent execution、Linear、验证和领域规则；核实当前机器、checkout、HEAD、remotes 和未提交变更。
 
-按 $wayfinder 开始正式规划。Linear 项目是 Apple Agenda MCP（UUID fe758034-a090-49bb-8759-4bf05c0b3d7e，Team Special Force / SPE），canonical map 是「Apple Agenda MCP：日历与提醒全面覆盖决策地图」https://linear.app/icecoke/issue/SPE-961。先回读地图、评论和当前子票；它目前是 Day 1 骨架，先 chart frontier，再按 skill 领取一个可推进的非研究决策，研究按 skill 派给 subagent。
+按 $wayfinder 开始正式规划。Linear 项目是 Apple Agenda MCP（UUID fe758034-a090-49bb-8759-4bf05c0b3d7e，Team Special Force / SPE），canonical map 是「Apple Agenda MCP：日历与提醒全面覆盖决策地图」https://linear.app/icecoke/issue/SPE-961。先回读地图、评论和当前子票。它目前是 Day 1 骨架：没有 child 时本 session 只做 Chart——确定 destination、广度优先 chart frontier、创建 child、第二遍连原生依赖、按 skill 启动 research subagent，然后停止，不在本 session 手动解决非研究票。已有 frontier 时才进入 Work through，领取一张可推进的非研究票并遵守每 session 的上限。
 
 已定范围仅 Calendar + Reminders，全面调查公开 EventKit 能力；不使用 AppleScript、私有 API 或 Calendar/Reminders 私有数据库。无法实现的能力明确返回不支持。MCP 调用要容易发现、输入合同明确、错误能处理、结果能回读。
 
@@ -38,7 +38,7 @@
 
 决策票挂在 canonical map 下，用已有 Type / Area / Gate / wayfinder 标签和原生依赖；引用用票名加链接。完成结论写 comment，地图只维护索引与结论摘要。同步 docs/progress/spe-961-agenda-coverage.html，保留整体方案、进度、后续批次和更新触发四块；不要用准备工作完成比例冒充产品覆盖比例。
 
-推进已获授权且能自主完成的工作；需要我决定的 HITL 问题集中提出，并继续不依赖答案的研究。每次说明已决问题、仍待决定、下一 frontier 和实际证据。产品实现按决策结果分批推进，提交走 Conventional Commits + 完整模板 + Refs SPE-*，经独立 review 用 PR 集成。现用 apple-events MCP 尚未切换；未来切换前按已有指令确认具体目标与实际会话生效，真实个人数据不进入 public repo / Linear / PR。
+推进当前模式已获授权的工作；需要我决定的 HITL 问题集中提出，并继续不依赖答案的研究。每次说明已决问题、仍待决定、下一 frontier 和实际证据。此 map 默认 planning-only，路线清楚时交付实施计划；不要把决策票当功能实现票，或未经 Notes 明确覆盖就顺带开发。以后按具体实施指令提交时，使用 Conventional Commits + 完整模板 + Refs SPE-*，经独立 review 用 PR 集成。现用 apple-events MCP 尚未切换；未来切换前按已有指令确认具体目标与实际会话生效，真实个人数据不进入 public repo / Linear / PR。
 ```
 
 ## Day 1 已备模板

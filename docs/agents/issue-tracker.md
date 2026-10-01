@@ -15,6 +15,7 @@
 ## Wayfinding operations
 
 - Canonical map：[日历与提醒全面覆盖决策地图](https://linear.app/icecoke/issue/SPE-961)，label `wayfinder:map`。模板见 [map](templates/wayfinder-map.md)。当前只有 Day 1 skeleton，尚未 chart frontier。
+- Chart 与 Work through 分开：首次 chart 建票、第二遍连依赖、启动 research 后停止，不手动解决非研究票。map 默认 planning-only；只有 Notes 明确覆盖时，执行才进入 map，不能把普通功能实现伪装成决策前置 task。
 - Child：用 `parentId` 指向 map，Type=Research（决策调查）或实际 task 类型，附 `wayfinder:research/prototype/grilling/task` 之一；不要创建第二张同义 map。
 - Claim：先读票/评论/relations，设 assignee 为实际主控用户并 In Progress；再开始工作。map 的 owner 不等于每个 child 的 claim。
 - Blocking：所有 child 创建完后，第二遍设置 `blockedBy`/`blocks`。

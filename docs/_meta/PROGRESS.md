@@ -14,17 +14,20 @@
 - 项目：[Apple Agenda MCP](https://linear.app/icecoke/project/apple-agenda-mcp-066ab728e33d)，UUID `fe758034-a090-49bb-8759-4bf05c0b3d7e`，Team Special Force / SPE。
 - 准备票：[准备 Apple Agenda MCP 的 Linear 联动、agent 分工和 Day 1 入口](https://linear.app/icecoke/issue/SPE-960)。状态和完成证据回读 Linear。
 - 决策地图：[Apple Agenda MCP：日历与提醒全面覆盖决策地图](https://linear.app/icecoke/issue/SPE-961)。当前只有骨架，无产品子票或已决产品问题；新 session 首先 chart frontier。
-- GitHub autolink 已创建；repo push webhook、实际 commit / PR 自动附件、独立 review 与 main 集成的验证结果待下方回填。
+- GitHub autolink 已创建。push-only webhook active / JSON / SSL verification；ping 和真实 push delivery 均 200。凭据复用现有安全存储，仅检索指针进入治理文档。
+- 实际 [准备提交](https://github.com/winter-icecoke/apple-agenda-mcp/commit/13596da9641197ff4f393134274404054a910350) 和 [Day 1 准备 PR](https://github.com/winter-icecoke/apple-agenda-mcp/pull/1) 已自动附在正确准备票，未手工补附件。
+- 观测状态：初始 commit push → In Review；draft PR → In Progress。这是共享自动化的真实结果，不等于完成或产品验收；后续 ready / merge / 手动收尾的回读留在准备票评论。
 
 ## 本轮验证
 
 | 项目 | 实际结果 |
 |---|---|
-| 文档入口、角色和模板 | 已写入工作分支；链接与字段检查待完成 |
-| GitHub push webhook | 正在配置和测试；未确认真实 push 自动关联 |
-| 实际 PR 自动关联 | 未开 PR / 未验证 |
-| 独立 review | 未执行 |
-| commit / push / merge | 尚未交付 |
+| 文档入口、角色和模板 | 42 个本地链接有效；实际 HTML 无未替换占位符或外部请求，浏览器显示核对通过；staged diff whitespace 和凭据模式检查通过 |
+| GitHub push webhook | ping 200；真实 Refs commit push 200，Linear 自动 commit attachment 已回读 |
+| 实际 PR 自动关联 | PR #1 自动 attachment 已回读；证明现有 GitHub App 覆盖本 fork |
+| 独立 review | 独立 gpt-6.1-sol / xhigh 完成；Chart / Work through 混用已修正，修复后无阻塞发现 |
+| commit / push / merge | 初始 commit 13596da 已推送；其后修复与证据随 PR #1 集成。最终合并 SHA / main 回读见准备票收尾评论与 PR 实时状态 |
+| GitHub CI | PR 初始 statusCheckRollup 为空、fork workflow API 未列出 workflow；未将此视为通过。docs-only 本轮不运行产品 Swift build/test |
 | 产品 build / release / install / 新 MCP 会话 | 此轮未执行 |
 | Calendar / Reminders 真实写入和用户验收 | 此轮未执行 |
 
