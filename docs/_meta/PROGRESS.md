@@ -1,8 +1,20 @@
 # Apple Agenda MCP · 当前证据
 
-更新：2026-10-01。当前轮范围：Wayfinder Chart、研究派工与交接同步；不涉及产品实现、签名发布或现用 MCP 切换。下方 Day 1 证据保留准备轮边界。
+更新：2026-10-01。当前轮范围：Wayfinder Work through 的研究核对、首个 HITL 对谈与地图同步；不涉及产品实现、签名发布或现用 MCP 切换。下方 Chart / Day 1 保留各轮历史边界，实时票状态以 Linear 为准。
 
-## Chart · 2026-10-01
+## Work through · 2026-10-01
+
+- 三份研究经主控与独立 `gpt-6.1-sol / xhigh` reviewer 核对，票内 resolution 后 Done：[Calendar 公开边界](https://linear.app/icecoke/issue/SPE-966)、[Reminders 原生结构与地点边界](https://linear.app/icecoke/issue/SPE-967)、[MCP 合同与运行发布基线](https://linear.app/icecoke/issue/SPE-968)。报告分别为 [Calendar](../research/spe-966-calendar-eventkit.md)、[Reminders](../research/spe-967-reminders-location-eventkit.md)、[MCP/运行](../research/spe-968-mcp-runtime-baseline.md)；每项保留 API / 源码 / MCP / 验证 / 未知分层。
+- 报告集成并 push：`97770a1`、`441e081`、`b67f0d0`；[Draft PR](https://github.com/winter-icecoke/apple-agenda-mcp/pull/2) 保持开放，未 merge。独立 review 两处 Calendar 与一处重复实例限定建议已修正；不把研究完成写作产品验收。
+- 固定研究基线仍为 `3ad6408`；upstream main `4c4d396` 比正式 release `v1.18.0 / 7371f99` 多 5 个提交，版本字符串同为 1.18.0。当前工具数 29，结果/分页、copy+delete、部分失败、内存 history50 和不完整 redo 均为源码事实；未复现运行行为。
+- 本机只读特定配置路径及包元数据确认 `mcp-server-apple-events@1.5.0`；09:18:24 过滤进程快照无匹配。实际活跃会话、binary commit、TCC、同步、签名与恢复仍未知；本 fork 未安装或接管现用配置。
+- 领取前复读当前关系/评论：覆盖口径只决定能力纳入与限制分类，两份原生 API 报告已包含当前 MCP 字段；独立 reviewer 同意移除其对运行基线研究的非必要 blocker。原生依赖由 23 调整为 22，原因留在 [覆盖口径票](https://linear.app/icecoke/issue/SPE-969) 评论，其他下游依赖保留。
+- 本次仅领取 [决定公开能力的覆盖口径与受限能力表达](https://linear.app/icecoke/issue/SPE-969)，Leo Liu / In Progress / Human Input。使用 grilling + domain-modeling 提出“对象 × 操作”及限制/实现/验证分层草案，等待 Leo 实际回答；没有产品决策 resolution 或新 ADR。时间/重复与受限原生功能已进入可领取 frontier，留给下轮，其他票按原生关系推进。
+- HTML v4 同步三项已关闭研究、22 条直接依赖、当前 HITL 和下一 frontier；Linear map 只索引已关闭研究，尚未关闭产品 HITL。当前同步提交和检查证据在 map 收口评论，不在历史段复制完整票状态。
+- 本轮同步 diff 独立 `gpt-6.1-sol / xhigh` review 无阻塞；HTML 四块/14 行、标题层级/嵌套、26 个本地链接出现、22 条依赖/领取快照、敏感信息与 whitespace 检查通过。CSS 与已查 Chart 版本一致；浏览器显示检查保留 Chart 轮事实，不冒充本轮产品或运行验收。
+- docs-only：未运行 Swift suite、build、真实对象、权限弹窗/reset、签名/release/install 或 MCP 切换。阶段已关闭 3/14 均为研究，产品覆盖分母仍未定。
+
+## Chart · 2026-10-01（收口时快照）
 
 - 实时开工基线：`Leos-Mac-mini-M4.local`，本 checkout `main@3ad64088feb82104982b6b3e7181f6bb4ca8af94`，开工前工作区干净；未见其他活跃 session 占用本仓库。fork main 同 SHA，upstream main `4c4d39632b2fae998bb9f25209b067b19ae64329`；上游正式 release [v1.18.0](https://github.com/PsychQuant/che-ical-mcp/releases/tag/v1.18.0)，2026-09-08 发布。正式 tag 不当作 main 或本机版本。
 - 地图原为骨架、无评论和 child。沿用已确认 Destination，使用 Wayfinder + grilling + domain-modeling 广度拆分：创建 3 张 AFK research、11 张 HITL grilling，共 14 张 children；第二遍连接 23 条原生依赖，逐票回读 project/parent/labels/assignee/relations 并核对无环。未解决或关闭产品决策，阶段已关闭 0/14，不是产品覆盖比例。

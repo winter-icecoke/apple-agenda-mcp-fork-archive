@@ -1,6 +1,6 @@
 # Day 1：新 session 入口
 
-准备日期：2026-10-01；Chart 更新：2026-10-01。治理准备已完成，决策地图已展开研究与 HITL children 并连接原生依赖；下一轮读取实时 frontier，不重复 Chart。研究是否完成以 Linear 评论、状态及证据为准。
+准备日期：2026-10-01；Work through 更新：2026-10-01。Chart 已完成，三项首轮研究已 resolution；覆盖口径正在与 Leo 对谈。下一轮先复读实时 claim、评论与原生关系，不重复 Chart、不代答已领取 HITL；当前证据见 PROGRESS。
 
 ## 位置与已定边界
 
@@ -9,7 +9,7 @@
 - Linear：[Apple Agenda MCP](https://linear.app/icecoke/project/apple-agenda-mcp-066ab728e33d)，Team Special Force / SPE，project UUID `fe758034-a090-49bb-8759-4bf05c0b3d7e`。
 - 决策地图：[Apple Agenda MCP：日历与提醒全面覆盖决策地图](https://linear.app/icecoke/issue/SPE-961)。治理准备票：[准备 Apple Agenda MCP 的 Linear 联动、agent 分工和 Day 1 入口](https://linear.app/icecoke/issue/SPE-960)。
 - 目标：公开 EventKit 的 Calendar + Reminders 能力尽量全面覆盖，MCP 易发现、易调用，限制明确返回。当前内部 binary / Swift target / MCP identity 仍沿用 upstream，改名是待决策项。
-- 当前现用服务仍是 `mcp-server-apple-events@1.5.0`；本 fork 尚未安装或接管现用 MCP。源码基线、实际测试和链路证据以 [PROGRESS](../_meta/PROGRESS.md) 为准。
+- 本机配置入口与安装包元数据确认 `mcp-server-apple-events@1.5.0`；活跃会话仍未验证。本 fork 尚未安装或接管现用 MCP；源码、安装、会话和测试证据以 [PROGRESS](../_meta/PROGRESS.md) 为准。
 
 ## 开工顺序
 
