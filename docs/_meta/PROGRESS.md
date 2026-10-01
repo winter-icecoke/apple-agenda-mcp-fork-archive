@@ -1,6 +1,52 @@
 # Apple Agenda MCP · 当前证据
 
-更新：2026-10-01。此轮范围：Day 1 治理与交接，不涉及产品实现、签名发布或现用 MCP 切换。
+更新：2026-10-01。当前轮范围：Wayfinder Work through 的地点/Maps/时间地点提醒业务对谈与地图同步；不涉及产品实现、签名发布或现用 MCP 切换。下方收口快照 / Chart / Day 1 保留各轮历史边界，实时票状态以 Linear 为准。
+
+## 地点与提醒 · Round 1 · 2026-10-01
+
+- Leo 指示继续；主控复读地图、评论、children 与原生关系，时间/重复前置 Done，本票原未领取，先领取 [决定地点、Maps 链接与时间地点提醒的调用语义](https://linear.app/icecoke/issue/SPE-971)，Leo Liu / In Progress。本轮只推进这一个非研究主题。
+- Research 角色 `gpt-6.1-sol / xhigh` 已只读核对原生地点、Maps/通用 URL、notes、alarms 与当前实现，并定点读取 Apple 官方 Map Links/alarms/radius；地点文字更新可能丢坐标、多 alarm 可被来源截断、radius=0 为系统默认、当前替换及非法值默认行为均不直接当合同。不读取个人对象，不把地图链接当原生地点提醒。
+- 一轮六组业务场景已提出：地点与链接、修改旧值、添加/替换提醒、跟随日程或固定时点、到达/离开及多触发语义。问题与候选边界记录在票内；业务建议待 Leo 实际回答，不写为已确认合同，不 resolution / Done，不增加候选术语或预造 ADR；既有时间与覆盖决定沿用。
+- HTML v8 同步领取和待答状态；规划已关闭仍为5/14（3研究+2决策），22条原生依赖未变。原生结构与查询身份本轮未领取；接口 schema、标识符与恢复算法保留后续决策。
+- 独立 `gpt-6.1-sol / xhigh` docs review 无阻塞/必要改项；三文件29处本地链接、HTML四块/14行/标题层级/嵌套/aria、敏感信息与 whitespace 通过，CSS未变。候选未写入CONTEXT/ADR，无产品或通知验证。
+- 本轮文档沿用 `docs/spe-961-chart` 与现有 Draft PR；commit/push/PR和实时待答状态的确切回读记录在地图评论。
+
+## 时间与重复 · Work through · 2026-10-01（收口快照）
+
+- Leo 明确要求继续，并指出逐个提问过碎。本轮按 grilling 的 round 方式，将同一主题内已能一起判断的问题集中提出，先解释业务影响，允许全部采用或按编号调整；地图 Notes 已保存此沟通偏好。
+- 复读当前 map/children、票面/comments/原生关系，三项研究前置均 Done；主控先领取 [决定全天、时区与重复系列的时间和修改范围合同](https://linear.app/icecoke/issue/SPE-970)，Leo Liu / In Progress / Human Input，才推进。
+- Leo 对五组业务场景实际回答“按建议”：重复改删先明确范围；旅行不改变约定地区时间；完整保留全天日期、日期型及无日期待办；每月最后一天与31号分开，短月规则创建/修改时一次确认后沿用；缺时长或时间含义不明确先询问，已有日程仅改开始时保留实际时长。问题详情及最终 resolution 在票内，不以先前待答快照代替实际回答。
+- [时间与重复合同](../contracts/spe-970-time-and-scope.md) 保存领域输入/回显、范围、错误与身份原则，并提供一页不变式和状态表。Calendar 的 `thisEvent` / `futureEvents` 与整个系列组合操作、Reminders 的范围限制分别表达；保存、通知、下一实例与身份确认分层。具体 ID/schema、批量和恢复仍留在下游票；来源/系统与运行未知待验证。
+- Domain 角色 `gpt-6.1-sol / xhigh` 起草，主控确认后由独立 `gpt-6.1-sol / ultra` 复核合同与完整状态链，最终无阻塞/待改项；reviewer 独立核对 SDK 与 TN3130。复核结果及相称静态检查随本轮收口记录在票评论。没有产品行为修改或真实对象验证。
+- 主控修正下游职责归属，补在途第二请求/外部改删状态；按 review 意见修复 TN3130 链接，并明确请求外实例影响未确认时不写入。通知/远端同步未知仍独立返回，不与范围安全条件混为一项。
+- 五文件的34处本地链接、换行/空白与敏感模式、commit 模板通过；HTML 四块/14行、标题层级/嵌套/aria、v7与5/14、可领取状态及 CSS 未变检查通过。先前无障碍标题修正保留；本轮未改布局，未重做浏览器或产品验证。
+- HTML v7 同步本轮确认与闭合；规划已关闭 5/14（3 研究 + 2 决策），22 条原生依赖未变。地点/提醒、原生结构、查询身份可在下一轮核对领取；本轮不领取其他 HITL。CONTEXT 只增加已确认术语；不因合同文件预造 ADR。
+- 交付沿用 `docs/spe-961-chart` 与 [Draft PR](https://github.com/winter-icecoke/apple-agenda-mcp/pull/2)；当前同步提交的确切 SHA、push/PR/Linear 回读在地图评论，尚未 merge 或发布。
+
+## 覆盖口径 · Work through · 2026-10-01（收口快照）
+
+- 三份研究经主控与独立 `gpt-6.1-sol / xhigh` reviewer 核对，票内 resolution 后 Done：[Calendar 公开边界](https://linear.app/icecoke/issue/SPE-966)、[Reminders 原生结构与地点边界](https://linear.app/icecoke/issue/SPE-967)、[MCP 合同与运行发布基线](https://linear.app/icecoke/issue/SPE-968)。报告分别为 [Calendar](../research/spe-966-calendar-eventkit.md)、[Reminders](../research/spe-967-reminders-location-eventkit.md)、[MCP/运行](../research/spe-968-mcp-runtime-baseline.md)；每项保留 API / 源码 / MCP / 验证 / 未知分层。
+- 报告集成并 push：`97770a1`、`441e081`、`b67f0d0`；[Draft PR](https://github.com/winter-icecoke/apple-agenda-mcp/pull/2) 保持开放，未 merge。独立 review 两处 Calendar 与一处重复实例限定建议已修正；不把研究完成写作产品验收。
+- 固定研究基线仍为 `3ad6408`；upstream main `4c4d396` 比正式 release `v1.18.0 / 7371f99` 多 5 个提交，版本字符串同为 1.18.0。当前工具数 29，结果/分页、copy+delete、部分失败、内存 history50 和不完整 redo 均为源码事实；未复现运行行为。
+- 本机只读特定配置路径及包元数据确认 `mcp-server-apple-events@1.5.0`；09:18:24 过滤进程快照无匹配。实际活跃会话、binary commit、TCC、同步、签名与恢复仍未知；本 fork 未安装或接管现用配置。
+- 领取前复读当前关系/评论：覆盖口径只决定能力纳入与限制分类，两份原生 API 报告已包含当前 MCP 字段；独立 reviewer 同意移除其对运行基线研究的非必要 blocker。原生依赖由 23 调整为 22，原因留在 [覆盖口径票](https://linear.app/icecoke/issue/SPE-969) 评论，其他下游依赖保留。
+- 本次唯一非研究决策 [决定公开能力的覆盖口径与受限能力表达](https://linear.app/icecoke/issue/SPE-969) 已获 Leo 实际回答“按这个办”。先以预约、共享日历、邀请、商品链接、到店通知和原生子任务场景解释影响，再记录票内 resolution 并 Done、移除 Human Input；CONTEXT 只同步已确认术语。无产品实现、无新 ADR 或新增 child；时间/重复与受限原生功能留给下轮。
+- HTML v5 同步三项研究与一项已确认决策、22 条直接依赖及下一 frontier；Linear map 只保留闭合索引，结论详情在各票 resolution。本次收口不领取第二张 HITL；当前同步提交和检查证据在 map 评论。
+- v5 的四文件 diff 经独立 `gpt-6.1-sol / xhigh` review 无阻塞；四块/14 行、标题嵌套、26 个本地链接出现、敏感模式与 whitespace 检查通过，CSS 未改。当前只确认产品承诺，不把源码/保存结果推为实际效果验收。
+- v4 同步 diff 独立 `gpt-6.1-sol / xhigh` review 无阻塞；HTML 四块/14 行、标题层级/嵌套、26 个本地链接出现、22 条依赖/领取快照、敏感信息与 whitespace 检查通过。CSS 与已查 Chart 版本一致；浏览器显示检查保留 Chart 轮事实，不冒充本轮产品或运行验收。
+- docs-only：未运行 Swift suite、build、真实对象、权限弹窗/reset、签名/release/install 或 MCP 切换。规划阶段已关闭 4/14（3 研究 + 1 决策），产品覆盖分母仍未定。
+
+## Chart · 2026-10-01（收口时快照）
+
+- 实时开工基线：`Leos-Mac-mini-M4.local`，本 checkout `main@3ad64088feb82104982b6b3e7181f6bb4ca8af94`，开工前工作区干净；未见其他活跃 session 占用本仓库。fork main 同 SHA，upstream main `4c4d39632b2fae998bb9f25209b067b19ae64329`；上游正式 release [v1.18.0](https://github.com/PsychQuant/che-ical-mcp/releases/tag/v1.18.0)，2026-09-08 发布。正式 tag 不当作 main 或本机版本。
+- 地图原为骨架、无评论和 child。沿用已确认 Destination，使用 Wayfinder + grilling + domain-modeling 广度拆分：创建 3 张 AFK research、11 张 HITL grilling，共 14 张 children；第二遍连接 23 条原生依赖，逐票回读 project/parent/labels/assignee/relations 并核对无环。未解决或关闭产品决策，阶段已关闭 0/14，不是产品覆盖比例。
+- 研究主控 claim 为 Leo Liu、In Progress、移除 Agent Ready；未领取 HITL 为 Backlog、No priority、assignee=null。全部恰好一个 Type/Area；Gate 不替代内部依赖。
+- 三路 Research 使用 `gpt-6.1-sol / xhigh`，各自独立 worktree 与唯一 Markdown 文件；实际 branch/workspace/资产 pointer 留在票评论：[调查 Calendar 与来源、时间及重复日程的公开 EventKit 边界](https://linear.app/icecoke/issue/SPE-966/调查-calendar-与来源时间及重复日程的公开-eventkit-边界)、[调查 Reminders 原生结构、地点与提醒字段的公开 EventKit 边界](https://linear.app/icecoke/issue/SPE-967/调查-reminders-原生结构地点与提醒字段的公开-eventkit-边界)、[调查当前 MCP 合同、状态行为与 fork 发布运行基线](https://linear.app/icecoke/issue/SPE-968/调查当前-mcp-合同状态行为与-fork-发布运行基线)。三路均已派出。研究资产当前本机 WIP，未核对或发布；执行者不递归派工、不 commit/push。
+- 后续研究满足标准并关闭后，首层可推进问题为：[决定公开能力的覆盖口径与受限能力表达](https://linear.app/icecoke/issue/SPE-969/决定公开能力的覆盖口径与受限能力表达)、[决定全天、时区与重复系列的时间和修改范围合同](https://linear.app/icecoke/issue/SPE-970/决定全天时区与重复系列的时间和修改范围合同)、[决定原生子任务、分区、附件与邀请等受限功能的产品边界](https://linear.app/icecoke/issue/SPE-972/决定原生子任务分区附件与邀请等受限功能的产品边界)；下一 session 按原生关系与创建顺序领取一张。当前不存在 unblocked、unclaimed 的 HITL frontier。
+- 独立规划与文档 diff 复核 `gpt-6.1-sol / xhigh` 均完成，无阻塞；提醒 CRUD/重新打开/时间字段与时间提醒依赖缺口已纳入。21 个本地链接、HTML 四块/14 票/结构/无占位、敏感信息与 whitespace 检查通过；浏览器显示核对通过。设计 hook 的低对比问题已修正，浅/深色正文最低对比度 4.71/6.13，未忽略或遗留检查项。
+- HTML v3、Day 1 和 tracker 入口同步，map 开放清单只在 children；Decisions so far 仍为空；Fog 仅留研究后才能明确的新情景和 prototype。
+- 本地 branch `docs/spe-961-chart`；本轮 commit/push/PR 的实际回读以 canonical map 的 Chart 收口评论为准，此快照不证明 merge。docs-only 不运行 Swift suite、产品 build、签名/release/install、新 MCP 会话或真实写入；本机现用 binary/会话本轮尚未核对。
+- 停止点：按 Leo 要求完成 Chart 并启动研究后结束，不 claim/解决非研究票，不进入产品实现。研究报告交回后由主控核对，再在票内 resolution；不能把建票/派工冒充研究或产品验收。
 
 ## 仓库与范围
 
@@ -13,7 +59,7 @@
 
 - 项目：[Apple Agenda MCP](https://linear.app/icecoke/project/apple-agenda-mcp-066ab728e33d)，UUID `fe758034-a090-49bb-8759-4bf05c0b3d7e`，Team Special Force / SPE。
 - 准备票：[准备 Apple Agenda MCP 的 Linear 联动、agent 分工和 Day 1 入口](https://linear.app/icecoke/issue/SPE-960)。状态和完成证据回读 Linear。
-- 决策地图：[Apple Agenda MCP：日历与提醒全面覆盖决策地图](https://linear.app/icecoke/issue/SPE-961)。当前只有骨架，无产品子票或已决产品问题；新 session 首先 chart frontier。
+- 决策地图：[Apple Agenda MCP：日历与提醒全面覆盖决策地图](https://linear.app/icecoke/issue/SPE-961)。Day 1 准备轮仅有骨架；当前 Chart 与下一 frontier 见上方证据及 Linear 实时 children。
 - GitHub autolink 已创建。push-only webhook active / JSON / SSL verification；ping 和真实 push delivery 均 200。凭据复用现有安全存储，仅检索指针进入治理文档。
 - 实际 [准备提交](https://github.com/winter-icecoke/apple-agenda-mcp/commit/13596da9641197ff4f393134274404054a910350) 和 [Day 1 准备 PR](https://github.com/winter-icecoke/apple-agenda-mcp/pull/1) 已自动附在正确准备票，未手工补附件。
 - 观测状态：初始 commit push → In Review；draft PR → In Progress。这是共享自动化的真实结果，不等于完成或产品验收；后续 ready / merge / 手动收尾的回读留在准备票评论。
