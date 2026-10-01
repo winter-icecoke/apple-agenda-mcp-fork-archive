@@ -9,10 +9,11 @@
 - 固定研究基线仍为 `3ad6408`；upstream main `4c4d396` 比正式 release `v1.18.0 / 7371f99` 多 5 个提交，版本字符串同为 1.18.0。当前工具数 29，结果/分页、copy+delete、部分失败、内存 history50 和不完整 redo 均为源码事实；未复现运行行为。
 - 本机只读特定配置路径及包元数据确认 `mcp-server-apple-events@1.5.0`；09:18:24 过滤进程快照无匹配。实际活跃会话、binary commit、TCC、同步、签名与恢复仍未知；本 fork 未安装或接管现用配置。
 - 领取前复读当前关系/评论：覆盖口径只决定能力纳入与限制分类，两份原生 API 报告已包含当前 MCP 字段；独立 reviewer 同意移除其对运行基线研究的非必要 blocker。原生依赖由 23 调整为 22，原因留在 [覆盖口径票](https://linear.app/icecoke/issue/SPE-969) 评论，其他下游依赖保留。
-- 本次仅领取 [决定公开能力的覆盖口径与受限能力表达](https://linear.app/icecoke/issue/SPE-969)，Leo Liu / In Progress / Human Input。使用 grilling + domain-modeling 提出“对象 × 操作”及限制/实现/验证分层草案，等待 Leo 实际回答；没有产品决策 resolution 或新 ADR。时间/重复与受限原生功能已进入可领取 frontier，留给下轮，其他票按原生关系推进。
-- HTML v4 同步三项已关闭研究、22 条直接依赖、当前 HITL 和下一 frontier；Linear map 只索引已关闭研究，尚未关闭产品 HITL。当前同步提交和检查证据在 map 收口评论，不在历史段复制完整票状态。
-- 本轮同步 diff 独立 `gpt-6.1-sol / xhigh` review 无阻塞；HTML 四块/14 行、标题层级/嵌套、26 个本地链接出现、22 条依赖/领取快照、敏感信息与 whitespace 检查通过。CSS 与已查 Chart 版本一致；浏览器显示检查保留 Chart 轮事实，不冒充本轮产品或运行验收。
-- docs-only：未运行 Swift suite、build、真实对象、权限弹窗/reset、签名/release/install 或 MCP 切换。阶段已关闭 3/14 均为研究，产品覆盖分母仍未定。
+- 本次唯一非研究决策 [决定公开能力的覆盖口径与受限能力表达](https://linear.app/icecoke/issue/SPE-969) 已获 Leo 实际回答“按这个办”。先以预约、共享日历、邀请、商品链接、到店通知和原生子任务场景解释影响，再记录票内 resolution 并 Done、移除 Human Input；CONTEXT 只同步已确认术语。无产品实现、无新 ADR 或新增 child；时间/重复与受限原生功能留给下轮。
+- HTML v5 同步三项研究与一项已确认决策、22 条直接依赖及下一 frontier；Linear map 只保留闭合索引，结论详情在各票 resolution。本次收口不领取第二张 HITL；当前同步提交和检查证据在 map 评论。
+- v5 的四文件 diff 经独立 `gpt-6.1-sol / xhigh` review 无阻塞；四块/14 行、标题嵌套、26 个本地链接出现、敏感模式与 whitespace 检查通过，CSS 未改。当前只确认产品承诺，不把源码/保存结果推为实际效果验收。
+- v4 同步 diff 独立 `gpt-6.1-sol / xhigh` review 无阻塞；HTML 四块/14 行、标题层级/嵌套、26 个本地链接出现、22 条依赖/领取快照、敏感信息与 whitespace 检查通过。CSS 与已查 Chart 版本一致；浏览器显示检查保留 Chart 轮事实，不冒充本轮产品或运行验收。
+- docs-only：未运行 Swift suite、build、真实对象、权限弹窗/reset、签名/release/install 或 MCP 切换。规划阶段已关闭 4/14（3 研究 + 1 决策），产品覆盖分母仍未定。
 
 ## Chart · 2026-10-01（收口时快照）
 

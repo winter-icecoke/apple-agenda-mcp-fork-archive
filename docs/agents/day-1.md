@@ -1,6 +1,6 @@
 # Day 1：新 session 入口
 
-准备日期：2026-10-01；Work through 更新：2026-10-01。Chart 已完成，三项首轮研究已 resolution；覆盖口径正在与 Leo 对谈。下一轮先复读实时 claim、评论与原生关系，不重复 Chart、不代答已领取 HITL；当前证据见 PROGRESS。
+准备日期：2026-10-01；Work through 更新：2026-10-01。Chart 已完成，三项首轮研究及覆盖口径已 resolution；Leo 已通过业务场景确认产品承诺。下一 frontier 是时间/重复修改范围；下一轮先复读实时 claim、评论与原生关系，不重复 Chart、不代答 HITL；当前证据见 PROGRESS。
 
 ## 位置与已定边界
 
