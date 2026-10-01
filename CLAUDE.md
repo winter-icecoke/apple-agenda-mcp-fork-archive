@@ -1,3 +1,11 @@
+# Apple Agenda MCP · Claude 入口
+
+先读 [AGENTS.md](AGENTS.md)，共同 tracker、派工、验证和授权规则以它为准。新 session 的直接入口是 [Day 1](docs/agents/day-1.md)。下方原始内容保留为上游技术约定，不覆盖本 fork 的 Wayfinder/Linear 规则。
+
+Claude/Fable 主控沿用用户当前选择的型号。技术调研、Swift/macOS 原生实现可交运行时可用的 Opus subagent；MCP/领域实现与独立 review 可交 Codex `gpt-6.1-sol` · `xhigh`。重复系列、批量、撤销/恢复、并发及权限身份改动按 [agent-execution](docs/agents/agent-execution.md) 的高风险路径处理。指定型号必须是真实工具参数，不以 prompt 自称模型代替；不可用时说明限制，不静默换模型。
+
+---
+
 <!-- SPECTRA:START v1.0.1 -->
 
 # Spectra Instructions

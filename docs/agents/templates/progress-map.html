@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{需求名称}} · 推进地图</title>
+<!--
+复用：复制到 docs/progress/<spe-编号>-<slug>.html；直接本地打开，无构建、脚本或外部请求。
+逐项替换 {{...}}；复制或删除阶段、票行、批次以符合真实范围。未确认的数据保留“未填写”，不编造进度。
+文本和属性须做 HTML 转义：& → &amp;，< → &lt;，> → &gt;，双引号 → &quot;。
+票名默认是无 href 的 a 元素，不会跳转。核实真实票后添加 href="真实 HTTPS URL"，并转义 URL 中的 &。
+阶段完成数仅计已满足完成标准且有证据的工作项；分母为该阶段当前全部工作项，同一项不可重复计数。
+未填数据时 progress 无 value，且配有未填写文字。填入后使用 value="已完成数" max="总数"，
+同步填写下方分子 / 分母 / 单位及 aria-label；总数必须大于 0，不适用时删除进度条并写“不适用”。合并进度如需展示须另列口径。
+只有确认当前阶段后，才为对应 phase 加 now 类，并添加 <span class="here">当前</span>。
+状态类：done、run、wait、you、alert。未填写先用 wait；已合并保留待验项，不等于已验收。
+深浅色默认跟随系统；可在 html 上设置 data-theme="light" 或 data-theme="dark" 固定主题。
+按六类触发节点更新：一轮多个节点合并为一次版本 +1，标题日期、页脚版本日期及命中节点同步填写。
+暂停点只填未授权批次或用户明确要求等待的节点；不存在时写“无”，不由批次边界新增审批。
+-->
+<style>
+
+:root{
+  --paper:#f4f1ed;--card:#ffffff;--ink:#1f1b16;--ink2:#4a433b;--ink3:#6f675d;--ink4:#756b5f;--ink5:#756b5f;
+  --line:#e6e0d7;--accent:#96560f;--accent-vivid:#c27a12;--accent-soft:#f5e6cf;--tonal:#ede7df;
+  --ok:#3f7d4e;--ok-soft:#e2efe4;--warn:#b7791f;--warn-soft:#f7ecd6;--muted-soft:#efeae3;--alert:#b23b2c;--alert-soft:#fae7e2;
+  --sp1:8px;--sp2:12px;--sp3:16px;--sp4:24px;--sp5:32px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#1b1815;--card:#241f1b;--ink:#f1ece5;--ink2:#cfc6ba;--ink3:#a89d8f;--ink4:#b0a496;--ink5:#b0a496;
+  --line:#352f29;--accent:#e0a24a;--accent-vivid:#e0a24a;--accent-soft:#3a2b16;--tonal:#2f2924;
+  --ok:#7fc08d;--ok-soft:#1f2f23;--warn:#e0a24a;--warn-soft:#3a2b16;--muted-soft:#2a2521;--alert:#e2705f;--alert-soft:#3b2520;}}
+:root[data-theme="dark"]{
+  --paper:#1b1815;--card:#241f1b;--ink:#f1ece5;--ink2:#cfc6ba;--ink3:#a89d8f;--ink4:#b0a496;--ink5:#b0a496;
+  --line:#352f29;--accent:#e0a24a;--accent-vivid:#e0a24a;--accent-soft:#3a2b16;--tonal:#2f2924;
+  --ok:#7fc08d;--ok-soft:#1f2f23;--warn:#e0a24a;--warn-soft:#3a2b16;--muted-soft:#2a2521;--alert:#e2705f;--alert-soft:#3b2520;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,"SF Pro Text","PingFang SC","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding-block:var(--sp5) 64px;padding-inline:var(--sp3)}
+h1{font-size:26px;line-height:32px;font-weight:700;margin:0 0 4px;text-wrap:balance}
+.sub{color:var(--ink3);margin:0 0 var(--sp4)}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-variant-numeric:tabular-nums;font-size:12px}
+.overline{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink5);display:flex;align-items:center;gap:var(--sp2);margin:var(--sp5) 0 var(--sp2)}
+.overline::after{content:"";flex:1;height:1px;background:var(--line)}
+.overline .r{color:var(--ink4);font-weight:400;letter-spacing:0;text-transform:none}
+/* phases */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp2)}
+.phase{background:var(--card);border-radius:14px;padding:var(--sp3);border:1px solid var(--line);position:relative}
+.phase.now{border-color:var(--accent-vivid);box-shadow:inset 0 0 0 1px var(--accent-vivid)}
+.phase .k{font-size:11px;color:var(--ink4);margin-bottom:4px}
+.phase.now .k{color:var(--accent)}
+.phase h3{margin:0 0 6px;font-size:16px;line-height:22px;font-weight:600}
+.phase p{margin:0;color:var(--ink2);font-size:13px}
+.phase .bar{height:4px;background:var(--tonal);border-radius:2px;margin-top:var(--sp2);overflow:hidden}
+.phase .bar i{display:block;height:100%;background:var(--accent-vivid);border-radius:2px}
+.here{position:absolute;top:-10px;right:12px;background:var(--accent-vivid);color:#fff;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+/* summary */
+.sum{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp2)}
+.sum .box{background:var(--card);border-radius:14px;padding:var(--sp3);border:1px solid var(--line)}
+.sum h4{margin:0 0 6px;font-size:13px;color:var(--ink3);font-weight:500}
+.sum ul{margin:0;padding-left:18px;color:var(--ink2);font-size:13px}
+.sum li{margin:2px 0}
+/* tickets */
+.tickets{background:var(--card);border-radius:14px;border:1px solid var(--line);overflow:hidden}
+.t{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--sp2);align-items:center;padding:10px var(--sp3);border-top:1px solid var(--line)}
+.t:first-child{border-top:0}
+.t .id{color:var(--ink4);grid-column:1 / -1}
+.t .id a{color:inherit;text-decoration:none}
+.t .name{color:var(--ink)}
+.t .name small{display:block;color:var(--ink4);font-size:12px}
+.chip{font-size:11px;line-height:14px;font-weight:600;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.chip.done{background:var(--ok-soft);color:var(--ok)}
+.chip.run{background:var(--warn-soft);color:var(--warn)}
+.chip.wait{background:var(--muted-soft);color:var(--ink4)}
+.chip.you{background:var(--accent-soft);color:var(--accent)}
+.legend{display:flex;gap:var(--sp2);flex-wrap:wrap;margin-top:var(--sp2);color:var(--ink4);font-size:12px}
+/* flow */
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;color:var(--ink2);font-size:13px}
+.flow .n{background:var(--tonal);border-radius:999px;padding:4px 10px}
+.flow .n.done{background:var(--ok-soft);color:var(--ok)}
+.flow .n.run{background:var(--warn-soft);color:var(--warn)}
+.flow .n.you{background:var(--accent-soft);color:var(--accent)}
+.flow .a{color:var(--ink5)}
+/* batches */
+.batches{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp2)}
+.batch{background:var(--card);border-radius:14px;padding:var(--sp3);border:1px solid var(--line)}
+.batch h3{margin:0 0 4px;font-size:14px;font-weight:600}
+.batch .v{color:var(--ink4);font-size:12px;margin:0 0 var(--sp1)}
+.batch ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+/* foundation list */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp2)}
+.foot{color:var(--ink4);font-size:12px;margin-top:var(--sp5)}
+.foot a{color:var(--accent)}
+.batch ul a{color:var(--accent);text-decoration:none}
+@media (max-width:640px){.phases,.sum,.batches,.grid2{grid-template-columns:1fr}.t{grid-template-columns:1fr;gap:4px}.here{top:-10px}}
+
+h2.overline{font-size:12px;letter-spacing:.04em}
+.wrap{overflow-wrap:anywhere}
+.phases,.sum,.batches,.grid2{grid-template-columns:repeat(3,minmax(0,1fr))}
+.sum,.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.chip{display:inline-block;white-space:normal;width:fit-content}
+.chip.alert{background:var(--alert-soft);color:var(--alert)}
+.phase progress{display:block;width:100%;height:5px;margin-top:var(--sp2);accent-color:var(--accent-vivid)}
+.phase progress:not([value]){appearance:none;border:0;background:var(--tonal);border-radius:3px}
+.phase progress:not([value])::-webkit-progress-bar{background:var(--tonal);border-radius:3px}
+.phase progress:not([value])::-moz-progress-bar{background:var(--tonal)}
+.count{color:var(--ink3);margin-top:6px}
+.list{margin:0;padding-left:18px;color:var(--ink2)}
+.batch p{font-size:13px;color:var(--ink2);margin:0 0 8px}
+.batch .v{color:var(--ink3)}
+.grid2 .tickets{margin-top:12px}
+.triggers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp2);margin:0}
+.triggers div{padding:var(--sp3);background:var(--card);border:1px solid var(--line);border-radius:14px}
+.triggers dt{font-weight:600;margin-bottom:4px}
+.triggers dd{margin:0;color:var(--ink2);font-size:13px}
+a{color:var(--accent)}
+@media (max-width:640px){.phases,.sum,.batches,.grid2,.triggers{grid-template-columns:1fr}.t{grid-template-columns:minmax(0,1fr)}.t .id{grid-column:auto}}
+
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <h1>{{需求名称}} · 推进地图</h1>
+    <p class="sub">{{地图票名}} · {{目标一句话}} · 更新 <span class="mono">{{更新日期}}</span></p>
+  </header>
+  <section aria-labelledby="plan-title">
+    <h2 class="overline" id="plan-title">整体方案</h2>
+    <div class="phases">
+      <article class="phase">
+        <div class="k">阶段 1 · 未填写</div>
+        <h3>决策</h3>
+        <p>{{阶段1范围}}</p>
+        <progress aria-label="决策阶段进度未填写"></progress>
+        <div class="mono count">未填写 · {{阶段1已验收数}} / {{阶段1总工作项数}} {{阶段1统计单位}}</div>
+      </article>
+      <article class="phase">
+        <div class="k">阶段 2 · 未填写</div>
+        <h3>地基</h3>
+        <p>{{阶段2范围}}</p>
+        <progress aria-label="地基阶段进度未填写"></progress>
+        <div class="mono count">未填写 · {{阶段2已验收数}} / {{阶段2总工作项数}} {{阶段2统计单位}}</div>
+      </article>
+      <article class="phase">
+        <div class="k">阶段 3 · 未填写</div>
+        <h3>编排</h3>
+        <p>{{阶段3范围}}</p>
+        <progress aria-label="编排阶段进度未填写"></progress>
+        <div class="mono count">未填写 · {{阶段3已验收数}} / {{阶段3总工作项数}} {{阶段3统计单位}}</div>
+      </article>
+    </div>
+    <h2 class="overline">现在站在哪 <span class="r">当前阶段：{{当前阶段}}</span></h2>
+    <div class="sum">
+      <div class="box"><h4>已经有的</h4><ul><li>{{已有能力与证据}}</li></ul></div>
+      <div class="box"><h4>要补的</h4><ul><li>{{缺口与关联票号}}</li></ul></div>
+    </div>
+  </section>
+  <section aria-labelledby="progress-title">
+    <h2 class="overline" id="progress-title">进度 · 决策票</h2>
+    <div class="tickets">
+      <div class="t">
+        <span class="id mono"><a>{{决策票名}}</a></span>
+        <span class="name">{{决策名称}}<small>{{一句结论}}</small></span>
+        <span class="chip wait">未填写</span>
+      </div>
+    </div>
+    <h2 class="overline">依赖顺序</h2>
+    <div class="flow" aria-label="执行依赖顺序">
+      <span class="n">{{上游票或阶段}}</span><span class="a" aria-label="然后">→</span>
+      <span class="n">{{当前票或阶段}}</span><span class="a" aria-label="然后">→</span>
+      <span class="n">{{下游票或阶段}}</span>
+    </div>
+    <h2 class="overline">执行票</h2>
+    <div class="grid2">
+      <article class="batch">
+        <h3>{{执行线1名称}}</h3>
+        <div class="tickets"><div class="t">
+          <span class="id mono"><a>{{执行线1票名}}</a></span>
+          <span class="name">{{执行线1任务名称}}<small>执行者：{{执行线1执行者}} · commit / PR：{{执行线1提交引用}} · CI：{{执行线1CI结果}} · review：{{执行线1待修条数}} 条 · 待验：{{执行线1待验项}}</small></span>
+          <span class="chip wait">未填写</span>
+        </div></div>
+      </article>
+      <article class="batch">
+        <h3>{{执行线2名称}}</h3>
+        <div class="tickets"><div class="t">
+          <span class="id mono"><a>{{执行线2票名}}</a></span>
+          <span class="name">{{执行线2任务名称}}<small>执行者：{{执行线2执行者}} · commit / PR：{{执行线2提交引用}} · CI：{{执行线2CI结果}} · review：{{执行线2待修条数}} 条 · 待验：{{执行线2待验项}}</small></span>
+          <span class="chip wait">未填写</span>
+        </div></div>
+      </article>
+    </div>
+    <h2 class="overline">交付证据</h2>
+    <div class="grid2">
+      <article class="batch"><h3>代码与集成</h3><ul>
+        <li>本地修改：{{本地修改状态与证据}}</li>
+        <li>commit：{{commit状态与证据}}</li>
+        <li>push：{{push状态与证据}}</li>
+        <li>合并：{{合并状态与证据}}</li>
+      </ul></article>
+      <article class="batch"><h3>发布与验收</h3><ul>
+        <li>Binary / 签名 / Release：{{binary版本与签名及release回读证据}}</li>
+        <li>本机安装 / MCP 会话：{{安装路径与会话identity及回读证据}}</li>
+        <li>真机：{{设备目标与验收证据}}</li>
+        <li>用户验收：{{验收范围与结论}}</li>
+      </ul></article>
+    </div>
+    <h2 class="overline">需要 Leo 的事项</h2>
+    <div class="batch"><span class="chip wait">未填写</span><p>{{所需决定或验收或凭据；没有则写无}}</p><p class="v">关联票：{{关联票名}} · 影响：{{受影响范围}}</p></div>
+    <h2 class="overline">状态图例</h2>
+    <div class="legend" aria-label="五类状态图例">
+      <span class="chip done">已决 / 已合并 / 已验收</span>
+      <span class="chip run">执行中 / 修 review</span>
+      <span class="chip wait">待开工 / 等上游</span>
+      <span class="chip you">需要 Leo</span>
+      <span class="chip alert">阻塞</span>
+    </div>
+  </section>
+  <section aria-labelledby="next-title">
+    <h2 class="overline" id="next-title">后续规划 · 批次</h2>
+    <div class="batches">
+      <article class="batch">
+        <h3>第 1 批 · {{批次1名称}}</h3>
+        <p class="v">验收：{{批次1验收标准}}</p>
+        <ul><li>{{批次1票名与链接及范围}}</li></ul>
+        <p>授权：{{批次1授权范围与依据}}</p>
+      </article>
+      <article class="batch">
+        <h3>第 2 批 · {{批次2名称}}</h3>
+        <p class="v">验收：{{批次2验收标准}}</p>
+        <ul><li>{{批次2票名与链接及范围}}</li></ul>
+        <p>授权：{{批次2授权范围与依据}}</p>
+      </article>
+      <article class="batch">
+        <h3>第 3 批 · {{批次3名称}}</h3>
+        <p class="v">验收：{{批次3验收标准}}</p>
+        <ul><li>{{批次3票名与链接及范围}}</li></ul>
+        <p>授权：{{批次3授权范围与依据}}</p>
+      </article>
+    </div>
+    <h2 class="overline">合并或集成顺序</h2>
+    <div class="flow"><span class="n">{{先集成的票}}</span><span class="a" aria-label="然后">→</span><span class="n">{{后集成的票}}</span><span class="a" aria-label="然后">→</span><span class="n">{{验收节点}}</span></div>
+    <h2 class="overline">暂停点</h2>
+    <div class="batch"><span class="chip wait">未填写</span><p>{{未授权批次或用户明确要求等待的节点；没有则写无}}</p><p class="v">依据：{{授权缺口或用户要求}} · 所需决定：{{继续推进条件}}</p></div>
+  </section>
+  <section aria-labelledby="trigger-title">
+    <h2 class="overline" id="trigger-title">更新触发节点</h2>
+    <dl class="triggers">
+      <div><dt>派工</dt><dd>新票创建、派出、执行者或路由变化。</dd></div>
+      <div><dt>交回</dt><dd>subagent 交付、PR 开出、CI 结果、review 条数与修复交回。</dd></div>
+      <div><dt>集成与验收</dt><dd>进入 main、Binary / 签名 / Release 发布回读、安装路径 / MCP 会话 identity 核验、真机补验；逐项记录。</dd></div>
+      <div><dt>阻断</dt><dd>需要 Leo 决策、验收或凭据；阻塞出现与解除。</dd></div>
+      <div><dt>批次边界</dt><dd>一批收口、下一批开工前；未授权或明确要求等待时标出暂停点。</dd></div>
+      <div><dt>方案变化</dt><dd>决策改判、范围增减、缺口开票。</dd></div>
+    </dl>
+  </section>
+  <footer class="foot">
+    <p>主票：<a>{{地图票名}}</a> · 本次命中节点：{{本次更新节点}}</p>
+    <p>v{{版本号}} · 更新 {{更新日期}}</p>
+  </footer>
+</main>
+</body>
+</html>
