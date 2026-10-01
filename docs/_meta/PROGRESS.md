@@ -1,8 +1,17 @@
 # Apple Agenda MCP · 当前证据
 
-更新：2026-10-01。当前轮范围：Wayfinder Work through 的时间/重复合同确认、独立复核与地图同步；不涉及产品实现、签名发布或现用 MCP 切换。下方收口快照 / Chart / Day 1 保留各轮历史边界，实时票状态以 Linear 为准。
+更新：2026-10-01。当前轮范围：Wayfinder Work through 的地点/Maps/时间地点提醒业务对谈与地图同步；不涉及产品实现、签名发布或现用 MCP 切换。下方收口快照 / Chart / Day 1 保留各轮历史边界，实时票状态以 Linear 为准。
 
-## 时间与重复 · Work through · 2026-10-01
+## 地点与提醒 · Round 1 · 2026-10-01
+
+- Leo 指示继续；主控复读地图、评论、children 与原生关系，时间/重复前置 Done，本票原未领取，先领取 [决定地点、Maps 链接与时间地点提醒的调用语义](https://linear.app/icecoke/issue/SPE-971)，Leo Liu / In Progress。本轮只推进这一个非研究主题。
+- Research 角色 `gpt-6.1-sol / xhigh` 已只读核对原生地点、Maps/通用 URL、notes、alarms 与当前实现，并定点读取 Apple 官方 Map Links/alarms/radius；地点文字更新可能丢坐标、多 alarm 可被来源截断、radius=0 为系统默认、当前替换及非法值默认行为均不直接当合同。不读取个人对象，不把地图链接当原生地点提醒。
+- 一轮六组业务场景已提出：地点与链接、修改旧值、添加/替换提醒、跟随日程或固定时点、到达/离开及多触发语义。问题与候选边界记录在票内；业务建议待 Leo 实际回答，不写为已确认合同，不 resolution / Done，不增加候选术语或预造 ADR；既有时间与覆盖决定沿用。
+- HTML v8 同步领取和待答状态；规划已关闭仍为5/14（3研究+2决策），22条原生依赖未变。原生结构与查询身份本轮未领取；接口 schema、标识符与恢复算法保留后续决策。
+- 独立 `gpt-6.1-sol / xhigh` docs review 无阻塞/必要改项；三文件29处本地链接、HTML四块/14行/标题层级/嵌套/aria、敏感信息与 whitespace 通过，CSS未变。候选未写入CONTEXT/ADR，无产品或通知验证。
+- 本轮文档沿用 `docs/spe-961-chart` 与现有 Draft PR；commit/push/PR和实时待答状态的确切回读记录在地图评论。
+
+## 时间与重复 · Work through · 2026-10-01（收口快照）
 
 - Leo 明确要求继续，并指出逐个提问过碎。本轮按 grilling 的 round 方式，将同一主题内已能一起判断的问题集中提出，先解释业务影响，允许全部采用或按编号调整；地图 Notes 已保存此沟通偏好。
 - 复读当前 map/children、票面/comments/原生关系，三项研究前置均 Done；主控先领取 [决定全天、时区与重复系列的时间和修改范围合同](https://linear.app/icecoke/issue/SPE-970)，Leo Liu / In Progress / Human Input，才推进。
