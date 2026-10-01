@@ -1,6 +1,6 @@
 # Day 1：新 session 入口
 
-准备日期：2026-10-01。此轮完成仓库治理与交接；产品决策地图只有骨架，下一轮从真实 frontier 开始。
+准备日期：2026-10-01；Chart 更新：2026-10-01。治理准备已完成，决策地图已展开研究与 HITL children 并连接原生依赖；下一轮读取实时 frontier，不重复 Chart。研究是否完成以 Linear 评论、状态及证据为准。
 
 ## 位置与已定边界
 
@@ -26,7 +26,7 @@
 
 先读取 AGENTS.md、docs/agents/day-1.md、docs/PROJECT_BRIEF.md、docs/_meta/PROGRESS.md，以及 day-1 指向的 agent execution、Linear、验证和领域规则；核实当前机器、checkout、HEAD、remotes 和未提交变更。
 
-按 $wayfinder 开始正式规划。Linear 项目是 Apple Agenda MCP（UUID fe758034-a090-49bb-8759-4bf05c0b3d7e，Team Special Force / SPE），canonical map 是「Apple Agenda MCP：日历与提醒全面覆盖决策地图」https://linear.app/icecoke/issue/SPE-961。先回读地图、评论和当前子票。它目前是 Day 1 骨架：没有 child 时本 session 只做 Chart——确定 destination、广度优先 chart frontier、创建 child、第二遍连原生依赖、按 skill 启动 research subagent，然后停止，不在本 session 手动解决非研究票。已有 frontier 时才进入 Work through，领取一张可推进的非研究票并遵守每 session 的上限。
+按 $wayfinder 继续正式规划。Linear 项目是 Apple Agenda MCP（UUID fe758034-a090-49bb-8759-4bf05c0b3d7e，Team Special Force / SPE），canonical map 是「Apple Agenda MCP：日历与提醒全面覆盖决策地图」https://linear.app/icecoke/issue/SPE-961。先回读地图、评论和当前子票。2026-10-01 已完成 Chart 建票和原生连边；已有 children 时不要重复 Chart，先核对研究是否已满足完成标准、原生依赖是否解除。研究还未关闭时，继续核对已派研究的证据或精确缺口，不代答其下游 HITL 问题。只有实际 unblocked、unclaimed 的 frontier 才进入 Work through，领取一张可推进的非研究票并遵守每 session 上限。若实时回读确实只有骨架、没有 child，才做 Chart：确定 destination、广度优先拆问题、建 child、第二遍连原生依赖、按 skill 启动 research 后停止。
 
 已定范围仅 Calendar + Reminders，全面调查公开 EventKit 能力；不使用 AppleScript、私有 API 或 Calendar/Reminders 私有数据库。无法实现的能力明确返回不支持。MCP 调用要容易发现、输入合同明确、错误能处理、结果能回读。
 

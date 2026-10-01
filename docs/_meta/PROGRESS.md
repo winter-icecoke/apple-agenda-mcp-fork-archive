@@ -1,6 +1,18 @@
 # Apple Agenda MCP · 当前证据
 
-更新：2026-10-01。此轮范围：Day 1 治理与交接，不涉及产品实现、签名发布或现用 MCP 切换。
+更新：2026-10-01。当前轮范围：Wayfinder Chart、研究派工与交接同步；不涉及产品实现、签名发布或现用 MCP 切换。下方 Day 1 证据保留准备轮边界。
+
+## Chart · 2026-10-01
+
+- 实时开工基线：`Leos-Mac-mini-M4.local`，本 checkout `main@3ad64088feb82104982b6b3e7181f6bb4ca8af94`，开工前工作区干净；未见其他活跃 session 占用本仓库。fork main 同 SHA，upstream main `4c4d39632b2fae998bb9f25209b067b19ae64329`；上游正式 release [v1.18.0](https://github.com/PsychQuant/che-ical-mcp/releases/tag/v1.18.0)，2026-09-08 发布。正式 tag 不当作 main 或本机版本。
+- 地图原为骨架、无评论和 child。沿用已确认 Destination，使用 Wayfinder + grilling + domain-modeling 广度拆分：创建 3 张 AFK research、11 张 HITL grilling，共 14 张 children；第二遍连接 23 条原生依赖，逐票回读 project/parent/labels/assignee/relations 并核对无环。未解决或关闭产品决策，阶段已关闭 0/14，不是产品覆盖比例。
+- 研究主控 claim 为 Leo Liu、In Progress、移除 Agent Ready；未领取 HITL 为 Backlog、No priority、assignee=null。全部恰好一个 Type/Area；Gate 不替代内部依赖。
+- 三路 Research 使用 `gpt-6.1-sol / xhigh`，各自独立 worktree 与唯一 Markdown 文件；实际 branch/workspace/资产 pointer 留在票评论：[调查 Calendar 与来源、时间及重复日程的公开 EventKit 边界](https://linear.app/icecoke/issue/SPE-966/调查-calendar-与来源时间及重复日程的公开-eventkit-边界)、[调查 Reminders 原生结构、地点与提醒字段的公开 EventKit 边界](https://linear.app/icecoke/issue/SPE-967/调查-reminders-原生结构地点与提醒字段的公开-eventkit-边界)、[调查当前 MCP 合同、状态行为与 fork 发布运行基线](https://linear.app/icecoke/issue/SPE-968/调查当前-mcp-合同状态行为与-fork-发布运行基线)。三路均已派出。研究资产当前本机 WIP，未核对或发布；执行者不递归派工、不 commit/push。
+- 后续研究满足标准并关闭后，首层可推进问题为：[决定公开能力的覆盖口径与受限能力表达](https://linear.app/icecoke/issue/SPE-969/决定公开能力的覆盖口径与受限能力表达)、[决定全天、时区与重复系列的时间和修改范围合同](https://linear.app/icecoke/issue/SPE-970/决定全天时区与重复系列的时间和修改范围合同)、[决定原生子任务、分区、附件与邀请等受限功能的产品边界](https://linear.app/icecoke/issue/SPE-972/决定原生子任务分区附件与邀请等受限功能的产品边界)；下一 session 按原生关系与创建顺序领取一张。当前不存在 unblocked、unclaimed 的 HITL frontier。
+- 独立规划与文档 diff 复核 `gpt-6.1-sol / xhigh` 均完成，无阻塞；提醒 CRUD/重新打开/时间字段与时间提醒依赖缺口已纳入。21 个本地链接、HTML 四块/14 票/结构/无占位、敏感信息与 whitespace 检查通过；浏览器显示核对通过。设计 hook 的低对比问题已修正，浅/深色正文最低对比度 4.71/6.13，未忽略或遗留检查项。
+- HTML v3、Day 1 和 tracker 入口同步，map 开放清单只在 children；Decisions so far 仍为空；Fog 仅留研究后才能明确的新情景和 prototype。
+- 本地 branch `docs/spe-961-chart`；本轮 commit/push/PR 的实际回读以 canonical map 的 Chart 收口评论为准，此快照不证明 merge。docs-only 不运行 Swift suite、产品 build、签名/release/install、新 MCP 会话或真实写入；本机现用 binary/会话本轮尚未核对。
+- 停止点：按 Leo 要求完成 Chart 并启动研究后结束，不 claim/解决非研究票，不进入产品实现。研究报告交回后由主控核对，再在票内 resolution；不能把建票/派工冒充研究或产品验收。
 
 ## 仓库与范围
 
@@ -13,7 +25,7 @@
 
 - 项目：[Apple Agenda MCP](https://linear.app/icecoke/project/apple-agenda-mcp-066ab728e33d)，UUID `fe758034-a090-49bb-8759-4bf05c0b3d7e`，Team Special Force / SPE。
 - 准备票：[准备 Apple Agenda MCP 的 Linear 联动、agent 分工和 Day 1 入口](https://linear.app/icecoke/issue/SPE-960)。状态和完成证据回读 Linear。
-- 决策地图：[Apple Agenda MCP：日历与提醒全面覆盖决策地图](https://linear.app/icecoke/issue/SPE-961)。当前只有骨架，无产品子票或已决产品问题；新 session 首先 chart frontier。
+- 决策地图：[Apple Agenda MCP：日历与提醒全面覆盖决策地图](https://linear.app/icecoke/issue/SPE-961)。Day 1 准备轮仅有骨架；当前 Chart 与下一 frontier 见上方证据及 Linear 实时 children。
 - GitHub autolink 已创建。push-only webhook active / JSON / SSL verification；ping 和真实 push delivery 均 200。凭据复用现有安全存储，仅检索指针进入治理文档。
 - 实际 [准备提交](https://github.com/winter-icecoke/apple-agenda-mcp/commit/13596da9641197ff4f393134274404054a910350) 和 [Day 1 准备 PR](https://github.com/winter-icecoke/apple-agenda-mcp/pull/1) 已自动附在正确准备票，未手工补附件。
 - 观测状态：初始 commit push → In Review；draft PR → In Progress。这是共享自动化的真实结果，不等于完成或产品验收；后续 ready / merge / 手动收尾的回读留在准备票评论。
